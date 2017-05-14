@@ -1,0 +1,24 @@
+{
+  "name": "hytex",
+  "version": "1.0.0",
+  "description": "A utility for watch changing objects and trigger customer define functions. A lightwweight alternative for Redux, Mobx or Flux.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/crazydq/hytex.git"
+  },
+  "keywords": [
+    "react",
+    "data store",
+    "object changes"
+  ],
+  "author": "crazydq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crazydq/hytex/issues"
+  },
+  "homepage": "https://github.com/crazydq/hytex#readme"
+}
