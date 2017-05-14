@@ -2,9 +2,10 @@
   "name": "hytex",
   "version": "1.0.0",
   "description": "A utility for watch changing objects and trigger customer define functions. A lightwweight alternative for Redux, Mobx or Flux.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,20 @@
   "bugs": {
     "url": "https://github.com/crazydq/hytex/issues"
   },
-  "homepage": "https://github.com/crazydq/hytex#readme"
+  "homepage": "https://github.com/crazydq/hytex#readme",
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "underscore": "^1.8.3",
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-1": "^6.1.18",
+    "html-webpack-plugin": "^2.28.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  }
 }
