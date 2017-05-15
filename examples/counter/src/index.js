@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Counter from './container';
-import { store } from 'hytex';
+import { store } from '../../../build';
 
 store.init({
     counter: 0

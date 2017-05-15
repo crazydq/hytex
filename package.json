@@ -1,11 +1,11 @@
 {
   "name": "hytex",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A utility for watch changing objects and trigger customer define functions. A lightwweight alternative for Redux, Mobx or Flux.",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
+    "build": "mkdir build; babel ./src -d build",
     "start": "NODE_ENV=development node ./tools/server.js"
   },
   "repository": {

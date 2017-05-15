@@ -1,5 +1,5 @@
 import Counter from './components/Counter';
-import {store, reactConnect } from 'hytex';
+import {store, reactConnect } from '../../../build';
 
 const mapData = (store) => {
     return {
