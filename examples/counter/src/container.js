@@ -1,8 +1,5 @@
 import Counter from './components/Counter';
-import {store, reactConnect } from '../../../lib';
-import lib from '../../../lib';
-
-console.log(lib);
+import {store, reactConnect } from 'hytex';
 
 const mapData = (store) => {
     return {
