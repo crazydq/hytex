@@ -4,13 +4,12 @@ var argv = require('yargs').argv;
 var fs = require('fs');
 var path = require('path');
 var webpackConfig = require('../webpack.config');
-const rootdir = process.cwd();
 var devConfig = null;
 
 console.log('Starting server...\n');
 
 if (process.argv && process.argv[2]) {
-    const entry = path.resolve(rootdir, './examples', process.argv[2], './src/index.js');
+    const entry = path.resolve(__dirname, '../examples', process.argv[2], './src/index.js');
     if (fs.existsSync(entry)) {
         devConfig = webpackConfig.devConfig(process.argv[2]);
         var server = new WebpackDevServer(webpack(devConfig), { // Start a server

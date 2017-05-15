@@ -1,0 +1,11 @@
+{
+  "name": "counter",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "hytex": "^1.0.4"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development node ../../tools/server.js counter"
+  }
+}
