@@ -1,5 +1,8 @@
 import Counter from './components/Counter';
-import {store, reactConnect } from '../../../src';
+import {store, reactConnect } from '../../../lib';
+import lib from '../../../lib';
+
+console.log(lib);
 
 const mapData = (store) => {
     return {

@@ -1,7 +1,7 @@
 import store from './store';
 import reactConnect from './reactConnect';
 
-export {
+export default {
     store,
     reactConnect
 }

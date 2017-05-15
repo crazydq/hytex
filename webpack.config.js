@@ -15,7 +15,7 @@ function makeWebpackConfig (options) {
     module: {
       loaders: [{
         test: /\.jsx?$/,
-        exclude: path.resolve(rootdir, './node_modules'),
+        exclude: [path.resolve(rootdir, './node_modules'), path.resolve(rootdir, './lib')],
         loader: 'babel'
       }]
     },
