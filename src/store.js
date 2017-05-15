@@ -1,6 +1,5 @@
 import main from './main';
 import utils from './utils';
-export reactConnect from './reactConnect';
 
 const Watch = main();
 const _fun = Symbol('fun');

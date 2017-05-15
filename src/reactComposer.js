@@ -1,5 +1,6 @@
 import {Component, createElement} from 'react';
 import utils from './utils';
+import Store from './store';
 
 function cb(container, name, payload) {
     container.setState(state => {
@@ -18,7 +19,7 @@ function makeid()
     return text;
 }
 
-export default function (composer, decomposer, properties, onEnter) {
+export default function (composer, decomposer, properties, onEnter, mapData) {
   return function wrap(UIComponent) {
     return class extends Component {
       constructor(props) {
@@ -38,7 +39,7 @@ export default function (composer, decomposer, properties, onEnter) {
       }
 
       render() {
-        const props = {...this.state, ...this.props, ...properties};
+        const props = {...mapData(Store), ...this.state, ...this.props, ...properties};
         return createElement(
           UIComponent,
           props,

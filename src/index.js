@@ -1,7 +1,7 @@
 import store from './store';
-import reactComposer from './reactComposer';
+import reactConnect from './reactConnect';
 
 export {
     store,
-    reactComposer
+    reactConnect
 }

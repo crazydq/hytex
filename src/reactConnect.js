@@ -8,5 +8,5 @@ export default function (view, mapData, properties, onEnter) {
     }, true, id);
   }, function(id){
     Store.deleteHandler(mapData, id);
-  }, properties, onEnter)(view);
+  }, properties, onEnter, mapData)(view);
 }
