@@ -17,7 +17,7 @@ import {store, reactConnect } from 'hytex';
 
 # Simple Example
 
-We use hytex to implement a counter, we don't need any action or reducer which used by redux.[view code](https://github.com/reactjs/redux/tree/master/examples/counter)<br>
+We use hytex to implement a counter, we don't need any action or reducer which used by redux.[(view code)](https://github.com/reactjs/redux/tree/master/examples/counter)<br>
 First we initialize our data store.
 ```javascript
 import { store } from 'hytex';
@@ -72,10 +72,11 @@ export default Counter;
 ```
 
 Now we need to relate data to the UI component. <br>
-Here we use a container to warp the component. The container do two things: <br>
-1) pass data stored in hytex to component.<br>
+Here we use a container to warp the component, the container do two things: <br>
+1) pass data to component stored in hytex .<br>
 2) pass related properties<br>
 
+The changing of counter stored in hytex will trigger re-rendering of the react component and display the new value.
 ```javascript
 import Counter from './components/Counter';
 import {store, reactConnect } from 'hytex';
