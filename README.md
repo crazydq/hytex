@@ -8,15 +8,16 @@ Works with: IE 9+, FF 4+, SF 5+, WebKit, CH 7+, OP 12+, Node.JS
 ## Installation
 npm install hytex --save
 ```javascript
+//ES5
 var Store = require("hytex").store;
-var connectReact = require("hytex").store;
+var connectReact = require("hytex").connectReact;
 //ES6
 import {store, reactConnect } from 'hytex';
 ```
 
 # Simple Example
 
-We use hytex to implement a counter, we don't need any action or reducer which used by redux.(https://github.com/reactjs/redux/tree/master/examples/counter)<br>
+We use hytex to implement a counter, we don't need any action or reducer which used by redux.[view code](https://github.com/reactjs/redux/tree/master/examples/counter)<br>
 First we initialize our data store.
 ```javascript
 import { store } from 'hytex';
@@ -70,7 +71,10 @@ class Counter extends Component {
 export default Counter;
 ```
 
-Now we need to relate data to the UI component, here we use a container to warp the component. The container do two things: 1) pass data stored in hytex to component, 2) pass related properties
+Now we need to relate data to the UI component. <br>
+Here we use a container to warp the component. The container do two things: <br>
+1) pass data stored in hytex to component.<br>
+2) pass related properties<br>
 
 ```javascript
 import Counter from './components/Counter';
@@ -98,5 +102,5 @@ const properties = {
 
 export default reactConnect(Counter, mapData, properties);
 ```
-You can runs this example in the development mode.<br>
+You can runs this example in the development mode.
 Go to hytex/examples/counter directory, run "npm install" and "npm start", open [http://localhost:3000](http://localhost:3000) to view it in the browser.
