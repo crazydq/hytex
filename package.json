@@ -1,6 +1,6 @@
 {
   "name": "hytex",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A utility for watch changing objects and trigger customer define functions. A lightwweight alternative for Redux, Mobx or Flux.",
   "main": "build/index.js",
   "scripts": {
