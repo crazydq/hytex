@@ -8,7 +8,7 @@ function makeWebpackConfig (options) {
 
   return _.extend({
     output: {
-      path: path.resolve(rootdir, './build'),
+      path: path.resolve(rootdir, './lib'),
       filename: '[name].js',
       chunkFilename: "[name].js"
     },
