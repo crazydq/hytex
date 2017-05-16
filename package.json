@@ -1,7 +1,7 @@
 {
   "name": "hytex",
-  "version": "1.0.7",
-  "description": "A utility for watch changing objects and trigger customer define functions. A lightwweight alternative for Redux, Mobx or Flux.",
+  "version": "1.0.9",
+  "description": "Hytex is a state container for JS applications. It watches changing objects and trigger re-rendering of views using framework like react. It is a lightweight alternative for Redux, Mobx or Flux.",
   "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

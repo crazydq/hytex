@@ -1,6 +1,6 @@
 # Hytex 
 
-Hytex is a state container for JS applications. It watches changing objects and trigger the re-rendering of views using framework like react. It is a lightwweight alternative for Redux, Mobx or Flux.
+Hytex is a state container for JS applications. It watches changing objects and trigger re-rendering of views using framework like react. It is a lightweight alternative for Redux, Mobx or Flux.
 
 ## Compatible with all serious browsers
 Works with: IE 9+, FF 4+, SF 5+, WebKit, CH 7+, OP 12+, Node.JS
@@ -73,7 +73,7 @@ export default Counter;
 
 Now we need to relate data to the UI component. <br>
 Here we use a container to warp the component, the container do two things: <br>
-1) pass data to component stored in hytex .<br>
+1) feed data to component stored in hytex .<br>
 2) pass related properties<br>
 
 The changing of counter stored in hytex will trigger re-rendering of the react component and display the new value.
