@@ -7,7 +7,15 @@ const _store = Symbol('store');
 
 let dataStore = {
     init: function(store){
-        this[_store] = store || {};
+        if (typeof store !== 'undefined') {
+            if (!utils.isObject(store)) {
+                throw new Error('Expected the store to be a plain object.');
+            }
+        }
+        else {
+            throw new Error('store is a necessary parameter');
+        }
+        this[_store] = store;
         this[_fun] = {};
     },
     addHandler: function(dataMap, fun, trigger, id) {

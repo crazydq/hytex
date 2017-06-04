@@ -20,7 +20,14 @@ var _store = Symbol('store');
 
 var dataStore = {
     init: function init(store) {
-        this[_store] = store || {};
+        if (typeof store !== 'undefined') {
+            if (!_utils2.default.isObject(store)) {
+                throw new Error('Expected the store to be a plain object.');
+            }
+        } else {
+            throw new Error('store is a necessary parameter');
+        }
+        this[_store] = store;
         this[_fun] = {};
     },
     addHandler: function addHandler(dataMap, fun, trigger, id) {

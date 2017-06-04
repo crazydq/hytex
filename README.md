@@ -30,7 +30,7 @@ var connectReact = require("hytex").connectReact;
 import {store, reactConnect } from 'hytex';
 ```
 
-# Simple Example
+## Simple Example
 
 We use hytex to implement a counter, we don't need any action or reducer which used by redux.[(view code)](https://github.com/reactjs/redux/tree/master/examples/counter)<br>
 First we initialize our data store.
