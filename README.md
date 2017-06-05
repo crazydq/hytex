@@ -6,18 +6,18 @@ Hytex is a state container for JS applications. It watches changing objects and 
 Works with: IE 9+, FF 4+, SF 5+, WebKit, CH 7+, OP 12+, Node.JS
 
 ## Why?
-JS single-page applications have become increasingly common these days together with the ever incresing complexity in both 
-user experience and UI state. Data flow patterns like Redux or Flux appear to solve this problem. They both have three major parts: stores, actions, and dispatcher（reducer in Redux). The most important concept they develop is that the state of application is stored in one object tree within a single store, and the only way to change the it is to emit an message（actions）that tells which part of data should be modified. After receiving the message, a callback function will be applied to do the state modification. 
+JS single-page applications have become increasingly common these days together with the ever increasing complexity in both 
+user experience and UI state. Data flow patterns like Redux or Flux appear to solve this problem. They both have three major parts: store, action, and dispatcher（reducer in Redux). The most important concept they develop is that the state of application is stored in one object tree within a single store, and the only way to change the it is to emit an message that tells which part of data should be modified. After receiving the message, a callback function will be applied to do the state modification. 
 
 Using Redux or Flux do relieve the pain of managing application state. But they also bring up new headache:
 
 * We need to create a lot of files for actions and dispatchers（reducers in Redux).
 * State changes can only happen when an action is dispatched which is unfriendly for developers.
-* We have to put fetching data logic in one place (actions) and processing data logic in another place (reducers).
+* We have to put fetching data logic in some places (action files) and processing data logic in another places (reducers).
 
 The last point is the most obvious disadvantage of Redux and Flux. The idea that state of application is stored in one object tree is great, but using patterns like actions or reducers bring up unnecessary burden for all developers. Message mechanism is a classical design pattern in software engineering for connecting different architecture modules, however, put it inside one architecture module is not reasonable.
 
-In Hytex, I retain the concept of store but no longer use actions, dispatchers and reducers. Changing application state can be accomplished by a simple assignment operation. Like "react-redux", Hytex provider a connect function to hook state store and UI components, any data change will trigger the re-rendering of corresponding UI components.
+In Hytex, I retain the concept of stores but no longer use actions, dispatchers and reducers. Changing application state can be accomplished by a simple assignment operation. Like "react-redux", Hytex provide a connect function to hook state store and UI components, any data change will trigger the re-rendering of corresponding UI components.
 
 
 ## Installation
