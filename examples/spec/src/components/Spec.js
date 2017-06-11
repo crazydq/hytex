@@ -13,21 +13,67 @@ class Spec extends Component {
                 </div>
                 <div>
                     <button onClick={props.onReplaceObject}>
-                        object replace
+                        replace object
                     </button>
                     replaced object : {JSON.stringify(props.replaceObject)}
                 </div>
                 <div>
                     <button onClick={props.onChangeObjectValue}>
-                        object value change
+                        change object value
                     </button>
                     changed object : {JSON.stringify(props.changeObject)}
                 </div>
                 <div>
                     <button onClick={props.addNewObjectValue}>
-                        object value added
+                        add object value
                     </button>
                     value added object : {JSON.stringify(props.newValueObject)}
+                </div>
+                <br/>
+                <div>
+                    <button onClick={props.replaceArray}>
+                        replace whole array
+                    </button>
+                    the array is: {JSON.stringify(props.replacedArray)}
+                </div>
+                <div>
+                    <button onClick={props.pushElmToArray}>
+                        push new element to an array
+                    </button>
+                    <button onClick={props.popElmFromArray}>
+                        pop element from an array
+                    </button>
+                    <button onClick={props.unshiftElmToArray}>
+                        unshift element to an array
+                    </button>
+                    <button onClick={props.shiftElmFromArray}>
+                        shift element from an array
+                    </button>
+                    the array is: {JSON.stringify(props.addElmArray)}
+                </div>
+                <div>
+                    <button onClick={props.deleteElmFromArray}>
+                        delete element from an array
+                    </button>
+                    the array is: {JSON.stringify(props.deleteElmArray)}
+                </div>
+                <div>
+                    <button onClick={props.replaceElmFromArray}>
+                        replace element from an array
+                    </button>
+                    <button onClick={props.insertElmToArray}>
+                        insert element to an array
+                    </button>
+                    the array is: {JSON.stringify(props.replaceElmArray)}
+                </div>
+                <div>
+                    <button onClick={props.sortArray}>
+                        sort array
+                    </button>
+                    <button onClick={props.reverseArray}>
+                        reverse array
+                    </button>
+                    the array is: {JSON.stringify(props.sortedArray)}
                 </div>
             </div>
         )

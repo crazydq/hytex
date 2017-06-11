@@ -12,7 +12,12 @@ store.init({
     changeObject: {
         l: 'a'
     },
-    newValueObject: {}
+    newValueObject: {},
+    addElmArray: [],
+    deleteElmArray: [{value: 1}, {value: 2}, {value: 3}],
+    replaceElmArray: [],
+    sortedArray: [3,5,2,5,6,1,7,9,4,8,0],
+    replacedArray: [{value: 1}, {value: 2}, {value: 3}]
 });
 
 const rootEl = document.getElementById('root');

@@ -384,45 +384,40 @@ export default function main() {
     };
 
     var loop = function () {
-
         // check for new or deleted props
         for (var i = 0; i < lengthsubjects.length; i++) {
-
             var subj = lengthsubjects[i];
+            if (utils.isObject(subj.actual)) {
+                if (subj.prop === "$$watchlengthsubjectroot") {
 
-            if (subj.prop === "$$watchlengthsubjectroot") {
+                    var difference = utils.getObjDiff(subj.obj, subj.actual);
 
-                var difference = utils.getObjDiff(subj.obj, subj.actual);
-
-                if (difference.added.length || difference.removed.length) {
-                    if (difference.added.length) {
-                        watchMany(subj.obj, difference.added, subj.watcher, subj.level - 1, true);
-                    }
-
-                    subj.watcher.call(subj.obj, "root", "differentattr", difference, subj.actual);
-                }
-                subj.actual = utils.clone(subj.obj);
-
-
-            } else {
-                var difference = utils.getObjDiff(subj.obj[subj.prop], subj.actual);
-
-                if (difference.added.length || difference.removed.length) {
-                    if (difference.added.length) {
-                        for (var j = 0; j < subj.obj.watchers[subj.prop].length; j++) {
-                            watchMany(subj.obj[subj.prop], difference.added, subj.obj.watchers[subj.prop][j], subj.level - 1, true);
+                    if (difference.added.length || difference.removed.length) {
+                        if (difference.added.length) {
+                            watchMany(subj.obj, difference.added, subj.watcher, subj.level - 1, true);
                         }
+
+                        subj.watcher.call(subj.obj, "root", "differentattr", difference, subj.actual);
                     }
+                    subj.actual = utils.clone(subj.obj);
 
-                    callWatchers(subj.obj, subj.prop, "differentattr", difference, subj.actual);
+                } else {
+                    var difference = utils.getObjDiff(subj.obj[subj.prop], subj.actual);
+
+                    if (difference.added.length || difference.removed.length) {
+                        if (difference.added.length) {
+                            for (var j = 0; j < subj.obj.watchers[subj.prop].length; j++) {
+                                watchMany(subj.obj[subj.prop], difference.added, subj.obj.watchers[subj.prop][j], subj.level - 1, true);
+                            }
+                        }
+
+                        callWatchers(subj.obj, subj.prop, "differentattr", difference, subj.actual);
+                    }
+                    subj.actual = utils.clone(subj.obj[subj.prop]);
+
                 }
-
-                subj.actual = utils.clone(subj.obj[subj.prop]);
-
             }
-
         }
-
     };
 
     var pushToLengthSubjects = function (obj, prop, watcher, level) {
