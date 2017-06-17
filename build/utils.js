@@ -93,7 +93,8 @@ exports.default = {
     getDataMapKey: function getDataMapKey(dataMap) {
         var _this = this;
 
-        var block = acorn.parse(dataMap).body[0].body;
+        var funStr = dataMap.toString().replace(/function\s+/, 'function F');
+        var block = acorn.parse(funStr).body[0].body;
         var res = [];
         if (block.type === 'BlockStatement' && block.body && block.body.length > 0) {
             var returnState = block.body[block.body.length - 1];
