@@ -7,8 +7,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (view, mapData, properties, onEnter) {
 
   if (typeof view !== 'undefined') {
-    if (typeof view !== 'function' || !view.prototype.isReactComponent) {
-      throw new Error('Expected the view to be a React Class.');
+    if (typeof view !== 'function') {
+      throw new Error('Expected the view to be a React Class or Function.');
     }
   } else {
     throw new Error('view is a necessary parameter');
