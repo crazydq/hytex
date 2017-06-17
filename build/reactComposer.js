@@ -67,11 +67,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function cb(container, name, payload) {
-  container.setState(function (state) {
-    var res = _extends({}, state);
-    res[name] = payload;
-    return res;
-  });
+  if (name) {
+    container.setState(function (state) {
+      var res = _extends({}, state);
+      res[name] = payload;
+      return res;
+    });
+  } else {
+    container.setState(function (state) {
+      return _extends({}, state, payload);
+    });
+  }
 }
 
 function makeid() {

@@ -11,7 +11,8 @@ const mapData = (store) => {
         addElmArray: store.addElmArray,
         deleteElmArray: store.deleteElmArray,
         replaceElmArray: store.replaceElmArray,
-        sortedArray: store.sortedArray
+        sortedArray: store.sortedArray,
+        objectChildren: store.objectChildren.children
     }
 };
 
@@ -65,6 +66,9 @@ const properties = {
     },
     reverseArray: function() {
         store.sortedArray.reverse();
+    },
+    changeObjectChildren: function () {
+        store.objectChildren.children.value = Math.floor(Math.random()*100);
     }
 };
 

@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+var acorn = require("acorn");
+
 exports.default = {
     isFunction: function isFunction(functionToCheck) {
         var getType = {};
@@ -76,12 +78,33 @@ exports.default = {
         return copy;
     },
 
-    getKeyByValue: function getKeyByValue(obj, value) {
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                if (obj[prop] === value) return prop;
+    _getNodeName: function _getNodeName(item) {
+        var node = item.value;
+        var name = '';
+        while (node.object) {
+            if (node.property && node.property.name) {
+                name = node.property.name;
+            }
+            node = node.object;
+        }
+        return name;
+    },
+
+    getDataMapKey: function getDataMapKey(dataMap) {
+        var _this = this;
+
+        var block = acorn.parse(dataMap).body[0].body;
+        var res = [];
+        if (block.type === 'BlockStatement' && block.body && block.body.length > 0) {
+            var returnState = block.body[block.body.length - 1];
+            if (returnState.type === 'ReturnStatement' && returnState.argument.properties && returnState.argument.properties.length > 0) {
+                var props = returnState.argument.properties;
+                res = props.map(function (item) {
+                    return _this._getNodeName(item);
+                });
             }
         }
+        return res;
     }
 };
 module.exports = exports['default'];

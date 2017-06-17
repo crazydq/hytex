@@ -3,11 +3,18 @@ import utils from './utils';
 import Store from './store';
 
 function cb(container, name, payload) {
-    container.setState(state => {
-        let res = {...state};
-        res[name] = payload;
-        return res;
-    });
+    if (name) {
+        container.setState(state => {
+            let res = {...state};
+            res[name] = payload;
+            return res;
+        });
+    }
+    else {
+        container.setState(state => {
+            return {...state, ...payload};
+        });
+    }
 }
 
 function makeid()

@@ -1,3 +1,5 @@
+const acorn = require("acorn");
+
 export default {
     isFunction: function (functionToCheck) {
         var getType = {};
@@ -68,12 +70,33 @@ export default {
         return copy;
     },
 
-    getKeyByValue: function(obj, value) {
-        for(let prop in obj) {
-            if(obj.hasOwnProperty(prop)) {
-                if(obj[prop] === value)
-                    return prop;
+    _getNodeName: function (item) {
+        let node = item.value;
+        let name = '';
+        while (node.object) {
+            if (node.property && node.property.name) {
+                name = node.property.name;
+            }
+            node = node.object;
+        }
+        return name;
+    },
+
+    getDataMapKey: function (dataMap) {
+        const block =  acorn.parse(dataMap).body[0].body;
+        let res = [];
+        if (block.type === 'BlockStatement' && block.body && block.body.length > 0) {
+            const returnState = block.body[block.body.length - 1];
+            if (returnState.type === 'ReturnStatement' && returnState.argument
+                    .properties && returnState.argument
+                    .properties.length > 0) {
+                const props = returnState.argument.properties;
+                res = props.map((item)=>{
+                    return this._getNodeName(item);
+                });
+
             }
         }
+        return res;
     }
 }

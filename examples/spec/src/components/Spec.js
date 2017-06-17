@@ -29,6 +29,12 @@ class Spec extends Component {
                     </button>
                     value added object : {JSON.stringify(props.newValueObject)}
                 </div>
+                <div>
+                    <button onClick={props.changeObjectChildren}>
+                        change object value
+                    </button>
+                    changed object : {JSON.stringify(props.objectChildren)}
+                </div>
                 <br/>
                 <div>
                     <button onClick={props.replaceArray}>
@@ -75,6 +81,7 @@ class Spec extends Component {
                     </button>
                     the array is: {JSON.stringify(props.sortedArray)}
                 </div>
+
             </div>
         )
     }

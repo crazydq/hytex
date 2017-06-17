@@ -17,6 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Watch = (0, _main2.default)();
 var _fun = Symbol('fun');
 var _store = Symbol('store');
+var LEVEL = 8;
 
 var dataStore = {
     init: function init(store) {
@@ -31,38 +32,36 @@ var dataStore = {
         this[_fun] = {};
     },
     addHandler: function addHandler(dataMap, fun, trigger, id) {
+        var _this2 = this;
+
         var filtered = dataMap(this[_store]);
-        for (var key in filtered) {
-            if (filtered.hasOwnProperty(key)) {
-                var name = _utils2.default.getKeyByValue(this[_store], filtered[key]);
-                if (name) {
-                    if (trigger) {
-                        fun.bind(null, key, filtered[key])();
-                    }
-                    this._register(name, fun.bind(null, key), id);
-                }
-            }
+        var keys = Object.keys(filtered);
+        var props = _utils2.default.getDataMapKey(dataMap);
+        props.forEach(function (prop, i) {
+            _this2._register(prop, keys[i], fun.bind(null, keys[i]), id, dataMap);
+        });
+        if (trigger) {
+            fun.bind(null, null, filtered)();
         }
     },
     deleteHandler: function deleteHandler(dataMap, id) {
+        var _this3 = this;
+
         var filtered = dataMap(this[_store]);
-        for (var key in filtered) {
-            if (filtered.hasOwnProperty(key)) {
-                var name = _utils2.default.getKeyByValue(this[_store], filtered[key]);
-                if (name) {
-                    Watch.unwatch(this[_store], name, this[_fun][id + '_' + name]);
-                    Watch.unwatch(this[_store][name], this[_fun][id + '_' + name]);
-                }
-            }
-        }
+        var keys = Object.keys(filtered);
+        var props = _utils2.default.getDataMapKey(dataMap);
+        props.forEach(function (prop, i) {
+            Watch.unwatch(_this3[_store], prop, _this3[_fun][id + '_' + keys[i]]);
+            Watch.unwatch(_this3[_store][prop], _this3[_fun][id + '_' + keys[i]]);
+        });
     },
-    _register: function _register(name, watcher, id) {
+    _register: function _register(name, key, watcher, id, dataMap) {
         var _this = this;
         var fun = function fun() {
-            watcher(_this[_store][name]);
+            watcher(dataMap(_this[_store])[key]);
         };
-        this[_fun][id + '_' + name] = fun;
-        Watch.watch(this[_store], name, fun, 8, true);
+        this[_fun][id + '_' + key] = fun;
+        Watch.watch(this[_store], name, fun, LEVEL, true);
     }
 };
 
