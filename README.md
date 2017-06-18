@@ -174,7 +174,7 @@ store.addElmArray.pop();
 ```
 
 ### change an element in an array
-Hytex doesn't wactch each element in an array, in order to trigger the callback function, use the 'splice' function to replace the element.
+Hytex doesn't watch each element in an array, in order to trigger the callback function, use the 'splice' function to replace the element.
 ```javascript
 store.replaceElmArray.splice(0,1, {value: Math.floor(Math.random()*100)});
 ```
