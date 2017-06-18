@@ -120,3 +120,77 @@ export default reactConnect(Counter, mapData, properties);
 ```
 You can runs this example in the development mode.
 Go to hytex/examples/counter directory, run "npm install" and "npm start", open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Specification
+Almost all kinds of data change will trigger callback functions registered in Hytex. All the possibilities are listed as follows, you can try out  the 'spec' example to see the results.
+### change a primitive
+```javascript
+store.simpleValue = store.simpleValue + 1;
+```
+### change object properties
+```javascript
+store.changeObject.l = Math.random().toString(36).substr(2, 1);
+```
+### replace the whole object
+```javascript
+store.replaceObject = {
+    l: Math.random().toString(36).substr(2, 1),
+    n: Math.floor(Math.random()*100)
+};
+```
+### add property to object
+```javascript
+const name = Math.random().toString(36).substr(2, 4);
+store.newValueObject[name] =  Math.floor(Math.random()*100);
+```
+
+### add property to object
+```javascript
+const name = Math.random().toString(36).substr(2, 4);
+store.newValueObject[name] =  Math.floor(Math.random()*100);
+```
+
+### replace the whole array
+```javascript
+store.replacedArray = [{value: Math.floor(Math.random()*100)}, {value: Math.floor(Math.random()*100)},{value: Math.floor(Math.random()*100)}]
+```
+
+### push, unshift and element to an array
+```javascript
+store.addElmArray.push({
+    value: Math.floor(Math.random()*100)
+});
+
+store.addElmArray.unshift({
+    value: Math.floor(Math.random()*100)
+});
+```
+
+### pop, shift an element from an array
+```javascript
+store.addElmArray.shift();
+
+store.addElmArray.pop();
+```
+
+### change an element in an array
+Hytex doesn't wactch each element in an array, in order to trigger the callback function, use the 'splice' function to replace the element.
+```javascript
+store.replaceElmArray.splice(0,1, {value: Math.floor(Math.random()*100)});
+```
+
+### insert an element to an array
+```javascript
+store.replaceElmArray.splice(0,0, {value: Math.floor(Math.random()*100)});
+```
+
+### delete an element from an array
+```javascript
+store.deleteElmArray.splice(0,1);
+```
+
+### sort or reverse an array
+```javascript
+store.sortedArray.sort();
+store.sortedArray.reverse();
+```
