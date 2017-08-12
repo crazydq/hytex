@@ -123,18 +123,18 @@ Go to hytex/examples/counter directory, run "npm install" and "npm start", open 
 
 ## API
 ### `store.init(data)`
-This method should be called before the rendering of any react component subscribe to hytex. You can use it to set the initial value of the store.
+This method should be called before the rendering of any react components subscribe to hytex. You can use it to set the initial value of the store.
 #### Arguments
 * [`data`]:\(*Object*): This argument is to set the initial value of the store, if you don't want anything in the store at the first place, just pass an empty object.
 
 ### `reactConnect(reactComponent, mapStoreDataToProps, [mergeProps])`
-The method connects a React component to a Hytex store. It does not modify the component class passed to it as the first argument; instead, it returns a new, connected component React class for you to use.
+The method connects a React component to a Hytex store. It does not modify the component class passed to it as the first argument; instead, it returns a new connected component React class for you to use.
 
 #### Arguments
 * [`reactComponent`]\(*React Class*): This argument is the react component to be connected to hytex. It must be specified, and it must be a React class not a stateless react function.
 
-* [`mapStoreDataToProps(store): stateProps`]\(*Function*): If this argument is specified, the new component will subscribe to Hytex updates. This means that any time the store is updated, mapStoreDataToProps will be called. The results of mapStoreDataToProps must be a plain object, which will be merged into the component’s props.
-This argument must be a function return plain object and must be specified.
+* [`mapStoreDataToProps(store): stateProps`]\(*Function*): This argument defines how the new component subscribes to Hytex updates. This means that any time the store is updated, mapStoreDataToProps will be called. The results of mapStoreDataToProps must be a plain object, which will be merged into the component’s props.
+and then trigger the render function. This argument must be a function return plain object and must be specified.
 
 * [`mergeProps`]\(*Object*): This argument will be passed as props to the wrapped component. It is an optional argument.
 
