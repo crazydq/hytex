@@ -46,6 +46,35 @@ let dataStore = {
         this[_fun][id+'_'+key] = fun;
         Watch.watch(this[_store], name, fun, LEVEL, true);
     },
+    observe: function (obj, watcher) {
+        if (obj === this) {
+            obj = this[_store];
+        }
+        const fun = function(prop, action, newval, oldval) {
+            if (action === 'differentattr') {
+                let obj = {...this};
+                delete obj.set;
+                delete obj.get;
+                delete obj.watchers;
+                watcher(oldval, obj);
+            }
+            if (action === 'set') {
+                watcher(oldval, newval, prop);
+            }
+            else if(action === 'push' || action === 'unshift' || action === 'shift' || action === 'pop' ||
+                action === 'splice' || action === 'sort' || action === 'reverse') {
+                let arr = this.map(function(elm){
+                    let newVal = {...elm};
+                    delete newVal.set;
+                    delete newVal.get;
+                    delete newVal.watchers;
+                    return newVal;
+                });
+                watcher(arr);
+            }
+        };
+        Watch.watch(obj, fun, LEVEL, true);
+    }
 };
 
 var handler = {

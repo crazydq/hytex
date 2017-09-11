@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _main = require('./main');
 
 var _main2 = _interopRequireDefault(_main);
@@ -62,6 +64,33 @@ var dataStore = {
         };
         this[_fun][id + '_' + key] = fun;
         Watch.watch(this[_store], name, fun, LEVEL, true);
+    },
+    observe: function observe(obj, watcher) {
+        if (obj === this) {
+            obj = this[_store];
+        }
+        var fun = function fun(prop, action, newval, oldval) {
+            if (action === 'differentattr') {
+                var _obj = _extends({}, this);
+                delete _obj.set;
+                delete _obj.get;
+                delete _obj.watchers;
+                watcher(oldval, _obj);
+            }
+            if (action === 'set') {
+                watcher(oldval, newval, prop);
+            } else if (action === 'push' || action === 'unshift' || action === 'shift' || action === 'pop' || action === 'splice' || action === 'sort' || action === 'reverse') {
+                var arr = this.map(function (elm) {
+                    var newVal = _extends({}, elm);
+                    delete newVal.set;
+                    delete newVal.get;
+                    delete newVal.watchers;
+                    return newVal;
+                });
+                watcher(arr);
+            }
+        };
+        Watch.watch(obj, fun, LEVEL, true);
     }
 };
 
