@@ -65,13 +65,13 @@ var dataStore = {
         this[_fun][id + '_' + key] = fun;
         Watch.watch(this[_store], name, fun, LEVEL, true);
     },
-    observe: function observe(obj, watcher) {
-        if (obj === this) {
-            obj = this[_store];
+    observe: function observe(obj, prop, watcher) {
+        if (typeof prop === 'function') {
+            watcher = prop;
         }
         var fun = function fun(prop, action, newval, oldval) {
             if (action === 'differentattr') {
-                var _obj = _extends({}, this);
+                var _obj = this[prop];
                 delete _obj.set;
                 delete _obj.get;
                 delete _obj.watchers;
@@ -90,7 +90,11 @@ var dataStore = {
                 watcher(arr);
             }
         };
-        Watch.watch(obj, fun, LEVEL, true);
+        if (typeof prop === 'function') {
+            Watch.watch(this[_store], fun, LEVEL, true);
+        } else {
+            Watch.watch(this[_store], prop, fun, LEVEL, true);
+        }
     }
 };
 

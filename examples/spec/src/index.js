@@ -32,19 +32,19 @@ const render = () => ReactDOM.render(
 );
 
 
-store.observe(store.changeObject, function(oldVal, newVal, prop) {
+store.observe(store, 'changeObject', function(oldVal, newVal, prop) {
     console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal)+" prop is "+prop);
 });
 
-store.observe(store.newValueObject, function(oldVal, newVal) {
+store.observe(store, 'newValueObject', function(oldVal, newVal) {
     console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal));
 });
 
-store.observe(store, function(oldVal, newVal, prop) {
+store.observe(store, 'replaceObject', function(oldVal, newVal, prop) {
     console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal)+" prop is "+prop);
 });
 
-store.observe(store.addElmArray, function(newVal) {
+store.observe(store, 'addElmArray', function(newVal) {
     console.log("new value is "+JSON.stringify(newVal));
 });
 

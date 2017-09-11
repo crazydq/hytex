@@ -46,13 +46,13 @@ let dataStore = {
         this[_fun][id+'_'+key] = fun;
         Watch.watch(this[_store], name, fun, LEVEL, true);
     },
-    observe: function (obj, watcher) {
-        if (obj === this) {
-            obj = this[_store];
+    observe: function (obj, prop, watcher) {
+        if (typeof prop === 'function') {
+          watcher = prop;
         }
         const fun = function(prop, action, newval, oldval) {
             if (action === 'differentattr') {
-                let obj = {...this};
+                let obj = this[prop];
                 delete obj.set;
                 delete obj.get;
                 delete obj.watchers;
@@ -73,7 +73,12 @@ let dataStore = {
                 watcher(arr);
             }
         };
-        Watch.watch(obj, fun, LEVEL, true);
+        if (typeof prop === 'function') {
+            Watch.watch(this[_store], fun, LEVEL, true);
+        }
+        else {
+            Watch.watch(this[_store], prop, fun, LEVEL, true);
+        }
     }
 };
 
