@@ -32,20 +32,29 @@ const render = () => ReactDOM.render(
 );
 
 
-store.observe(store, 'changeObject', function(oldVal, newVal, prop) {
-    console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal)+" prop is "+prop);
+store.observe(store, 'changeObject', function(oldVal, newVal) {
+    console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal));
 });
 
 store.observe(store, 'newValueObject', function(oldVal, newVal) {
     console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal));
 });
 
-store.observe(store, 'replaceObject', function(oldVal, newVal, prop) {
-    console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal)+" prop is "+prop);
+store.observe(store, 'replaceObject', function(oldVal, newVal) {
+    console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal));
 });
 
-store.observe(store, 'addElmArray', function(newVal) {
+store.observe(store, 'replacedArray', function(oldVal, newVal) {
+    console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal));
+});
+
+store.observe(store, 'addElmArray', function(oldVal, newVal) {
+    console.log("old value is "+JSON.stringify(oldVal));
     console.log("new value is "+JSON.stringify(newVal));
+});
+
+store.observe(store, 'replaceElmArray', function(oldVal, newVal) {
+    console.log("old value is "+JSON.stringify(oldVal)+", new value is "+JSON.stringify(newVal));
 });
 
 render();

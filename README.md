@@ -138,6 +138,15 @@ and then trigger the render function. This argument must be a function return pl
 
 * [`mergeProps`]\(*Object*): This argument will be passed as props to the wrapped component. It is an optional argument.
 
+### `store.observe(obj, [property], callback)`
+Hytex allows self-define function subscribed to store. Data change will not only trigger the rer-rendering of components, but also trigger the registered callback functions. New data and old data will both be passed to the callback functions.
+#### Arguments
+* [`obj`]:\(*Object*): This argument defines the target to be observed. It should be reference to store or store properties.
+
+* [`property`]:\(*string*): This argument defines certain property of the first argument to be watched. It should be a string and is optional.
+
+* [`callback(oldVal, newVal)`]\(*Function*): Function to execute when watched object is changed. old data and new data will be passed as the first and second parameters.
+
 ## Specification
 Almost all kinds of data change will trigger callback functions registered in Hytex. All the possibilities are listed as follows, you can try out  the 'spec' example to see the results.
 ### change a primitive

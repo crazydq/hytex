@@ -70,7 +70,37 @@ let dataStore = {
                     delete newVal.watchers;
                     return newVal;
                 });
-                watcher(arr);
+                if (oldval && !utils.isArray(oldval)) {
+                    delete oldval.set;
+                    delete oldval.get;
+                    delete oldval.watchers;
+                }
+                else if (oldval && utils.isArray(oldval)) {
+                    oldval = oldval.map(function(elm){
+                        let newVal = {...elm};
+                        delete newVal.set;
+                        delete newVal.get;
+                        delete newVal.watchers;
+                        return newVal;
+                    });
+                }
+                let old = arr.concat([]);
+                if (action === 'push') {
+                    old.pop();
+                }
+                else if (action === 'unshift') {
+                    old.shift();
+                }
+                else if (action === 'pop') {
+                    old.push(oldval);
+                }
+                else if (action === 'shift') {
+                    old.unshift(oldval);
+                }
+                else if (action === 'splice') {
+                    old.splice(prop, newval.length, ...oldval);
+                }
+                watcher(old, arr);
             }
         };
         if (typeof prop === 'function') {
