@@ -335,7 +335,7 @@ export default function main() {
 
     var unwatchOne = function (obj, prop, watcher) {
         if (prop) {
-            if (obj.watchers[prop]) {
+            if (obj.watchers && obj.watchers[prop]) {
                 if (watcher === undefined) {
                     delete obj.watchers[prop]; // remove all property watchers
                 }

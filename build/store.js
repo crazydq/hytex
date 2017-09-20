@@ -16,6 +16,8 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var Watch = (0, _main2.default)();
 var _fun = Symbol('fun');
 var _store = Symbol('store');
@@ -87,7 +89,32 @@ var dataStore = {
                     delete newVal.watchers;
                     return newVal;
                 });
-                watcher(arr);
+                if (oldval && !_utils2.default.isArray(oldval)) {
+                    delete oldval.set;
+                    delete oldval.get;
+                    delete oldval.watchers;
+                } else if (oldval && _utils2.default.isArray(oldval)) {
+                    oldval = oldval.map(function (elm) {
+                        var newVal = _extends({}, elm);
+                        delete newVal.set;
+                        delete newVal.get;
+                        delete newVal.watchers;
+                        return newVal;
+                    });
+                }
+                var old = arr.concat([]);
+                if (action === 'push') {
+                    old.pop();
+                } else if (action === 'unshift') {
+                    old.shift();
+                } else if (action === 'pop') {
+                    old.push(oldval);
+                } else if (action === 'shift') {
+                    old.unshift(oldval);
+                } else if (action === 'splice') {
+                    old.splice.apply(old, [prop, newval.length].concat(_toConsumableArray(oldval)));
+                }
+                watcher(old, arr);
             }
         };
         if (typeof prop === 'function') {
