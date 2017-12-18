@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Spec from './container';
-import { store } from 'hytex';
+import { store } from '../../../src/index';
 
 store.init({
     simpleValue: 1,
@@ -25,9 +25,18 @@ store.init({
     }
 });
 
+class Parent extends Component {
+    componentDidMount (prevProps, prevState) {
+        console.log(this.spec.desc());
+    }
+    render() {
+        return (<div><Spec ref={(elm) => { this.spec = elm; }}/></div>);
+    }
+}
+
 const rootEl = document.getElementById('root');
 const render = () => ReactDOM.render(
-    <Spec />,
+    <Parent />,
     rootEl
 );
 

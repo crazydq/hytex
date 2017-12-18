@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 
 class Spec extends Component {
+    desc () {
+      return 'this is spec component'
+    }
     render() {
         const props =  this.props;
         return (

@@ -1,4 +1,4 @@
-import {Component, createElement} from 'react';
+import React, {Component} from 'react';
 import utils from './utils';
 import Store from './store';
 
@@ -28,7 +28,7 @@ function makeid()
 
 export default function (composer, decomposer, properties, onEnter, mapData) {
   return function wrap(UIComponent) {
-    return class extends Component {
+    return class extends UIComponent {
       constructor(props) {
         super(props);
         this.id = makeid();
@@ -47,10 +47,7 @@ export default function (composer, decomposer, properties, onEnter, mapData) {
 
       render() {
         const props = {...mapData(Store), ...this.state, ...this.props, ...properties};
-        return createElement(
-          UIComponent,
-          props,
-        );
+        return <UIComponent {...props}/>
       }
     };
   }

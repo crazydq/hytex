@@ -1,5 +1,5 @@
 import Spec from './components/Spec';
-import { store, reactConnect } from 'hytex';
+import { store, reactConnect } from '../../../src/index';
 
 const mapData = (store) => {
     return {
