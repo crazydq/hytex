@@ -35,7 +35,7 @@ var dataStore = {
         this[_store] = store;
         this[_fun] = {};
     },
-    addHandler: function addHandler(dataMap, fun, trigger, id) {
+    addHandler: function addHandler(dataMap, fun, id) {
         var _this2 = this;
 
         var filtered = dataMap(this[_store]);
@@ -44,9 +44,6 @@ var dataStore = {
         props.forEach(function (prop, i) {
             _this2._register(prop, keys[i], fun.bind(null, keys[i]), id, dataMap);
         });
-        if (trigger) {
-            fun.bind(null, null, filtered)();
-        }
     },
     deleteHandler: function deleteHandler(dataMap, id) {
         var _this3 = this;

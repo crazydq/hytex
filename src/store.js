@@ -18,16 +18,13 @@ let dataStore = {
         this[_store] = store;
         this[_fun] = {};
     },
-    addHandler: function(dataMap, fun, trigger, id) {
+    addHandler: function(dataMap, fun, id) {
         const filtered = dataMap(this[_store]);
         const keys = Object.keys(filtered);
         const props = utils.getDataMapKey(dataMap);
         props.forEach((prop, i)=>{
             this._register(prop, keys[i], fun.bind(null, keys[i]), id, dataMap);
         });
-        if (trigger) {
-            fun.bind(null, null, filtered)();
-        }
     },
     deleteHandler: function (dataMap, id) {
         const filtered = dataMap(this[_store]);

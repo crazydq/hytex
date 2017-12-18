@@ -37,7 +37,7 @@ exports.default = function (view, mapData, properties, onEnter) {
   return (0, _reactComposer2.default)(function (cb, id) {
     _store2.default.addHandler(mapData, function (name, data) {
       cb(name, data);
-    }, true, id);
+    }, id);
   }, function (id) {
     _store2.default.deleteHandler(mapData, id);
   }, properties, onEnter, mapData)(view);
