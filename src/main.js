@@ -267,7 +267,7 @@ export default function main() {
             }
             ln = watchList ? watchList.length : 0;
             for (var wr = 0; wr < ln; wr++) {
-                watchList[wr].call(obj, prop, action, newval, oldval);
+                watchList[wr] && watchList[wr].call(obj, prop, action, newval, oldval);
             }
         } else {
             for (var prop in obj) {//call all
