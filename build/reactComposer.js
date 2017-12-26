@@ -10,25 +10,29 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = function (composer, decomposer, properties, onEnter, mapData) {
     return function wrap(UIComponent) {
-        return function (_Component) {
-            _inherits(_class, _Component);
+        var Wrapper = function (_Component) {
+            _inherits(Wrapper, _Component);
 
-            function _class(props) {
-                _classCallCheck(this, _class);
+            function Wrapper(props) {
+                _classCallCheck(this, Wrapper);
 
-                var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
+                var _this2 = _possibleConstructorReturn(this, (Wrapper.__proto__ || Object.getPrototypeOf(Wrapper)).call(this, props));
 
-                _this.id = makeid();
-                return _this;
+                _this2.id = makeid();
+                return _this2;
             }
 
-            _createClass(_class, [{
+            _createClass(Wrapper, [{
                 key: 'componentDidMount',
                 value: function componentDidMount() {
                     composer(cb.bind(null, this), this.id);
                     if (onEnter && _utils2.default.isFunction(onEnter)) {
                         onEnter(this.props);
                     }
+                    var _this = this;
+                    Object.getOwnPropertyNames(UIComponent.prototype).forEach(function (key) {
+                        _this[key] = UIComponent.prototype[key].bind(_this.wrapped);
+                    });
                 }
             }, {
                 key: 'componentWillUnmount',
@@ -38,13 +42,20 @@ exports.default = function (composer, decomposer, properties, onEnter, mapData) 
             }, {
                 key: 'render',
                 value: function render() {
+                    var _this3 = this;
+
                     var props = _extends({}, mapData(_store2.default), this.state, this.props, properties);
-                    return _react2.default.createElement(UIComponent, props);
+                    return _react2.default.createElement(UIComponent, _extends({}, props, { ref: function ref(child) {
+                            _this3.wrapped = child;
+                        } }));
                 }
             }]);
 
-            return _class;
+            return Wrapper;
         }(_react.Component);
+
+        ;
+        return Wrapper;
     };
 };
 

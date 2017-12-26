@@ -1,6 +1,11 @@
 const acorn = require("acorn");
 
 export default {
+
+    REACT_FUNC: ['constructor','componentWillMount','componentDidMount','render', 'componentWillReceiveProps',
+                 'shouldComponentUpdate', 'componentWillUpdate', 'componentDidUpdate', 'setState', 'forceUpdate',
+                 'replaceState', 'isMounted', 'isReactComponent', ],
+
     isFunction: function (functionToCheck) {
         var getType = {};
         return functionToCheck && getType.toString.call(functionToCheck) == '[object Function]';

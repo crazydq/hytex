@@ -9,6 +9,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var acorn = require("acorn");
 
 exports.default = {
+
+    REACT_FUNC: ['constructor', 'componentWillMount', 'componentDidMount', 'render', 'componentWillReceiveProps', 'shouldComponentUpdate', 'componentWillUpdate', 'componentDidUpdate', 'setState', 'forceUpdate', 'replaceState', 'isMounted', 'isReactComponent'],
+
     isFunction: function isFunction(functionToCheck) {
         var getType = {};
         return functionToCheck && getType.toString.call(functionToCheck) == '[object Function]';

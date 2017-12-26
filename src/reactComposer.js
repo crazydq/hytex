@@ -28,7 +28,7 @@ function makeid()
 
 export default function (composer, decomposer, properties, onEnter, mapData) {
   return function wrap(UIComponent) {
-    return class extends Component {
+    class Wrapper extends Component {
       constructor(props) {
         super(props);
         this.id = makeid();
@@ -39,6 +39,10 @@ export default function (composer, decomposer, properties, onEnter, mapData) {
         if (onEnter && utils.isFunction(onEnter)) {
             onEnter(this.props);
         }
+        const _this = this;
+        Object.getOwnPropertyNames(UIComponent.prototype).forEach(function(key) {
+          _this[key] = UIComponent.prototype[key].bind(_this.wrapped);
+        });
       }
 
       componentWillUnmount() {
@@ -47,8 +51,9 @@ export default function (composer, decomposer, properties, onEnter, mapData) {
 
       render() {
         const props = {...mapData(Store), ...this.state, ...this.props, ...properties};
-        return <UIComponent {...props}/>
+        return <UIComponent {...props} ref={(child) => { this.wrapped = child; }}/>
       }
     };
+    return Wrapper;
   }
 }

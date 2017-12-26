@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 
 class Spec extends Component {
+    constructor(props) {
+      super(props);
+      this.abc = 'abc';
+    }
     desc () {
-      return 'this is spec component'
+      console.log(this.abc);
+    }
+    componentDidMount() {
+
     }
     render() {
         const props =  this.props;
