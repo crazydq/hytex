@@ -27,7 +27,7 @@ store.init({
 
 class Parent extends Component {
     componentDidMount (prevProps, prevState) {
-        console.log(this.spec.desc());
+        //console.log(this.spec.desc());
     }
     render() {
         return (<div><Spec ref={(elm) => { this.spec = elm; }}/></div>);

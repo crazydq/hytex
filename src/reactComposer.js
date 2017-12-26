@@ -28,7 +28,7 @@ function makeid()
 
 export default function (composer, decomposer, properties, onEnter, mapData) {
   return function wrap(UIComponent) {
-    return class extends React.PureComponent {
+    return class extends Component {
       constructor(props) {
         super(props);
         this.id = makeid();

@@ -10,8 +10,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = function (composer, decomposer, properties, onEnter, mapData) {
     return function wrap(UIComponent) {
-        return function (_React$PureComponent) {
-            _inherits(_class, _React$PureComponent);
+        return function (_Component) {
+            _inherits(_class, _Component);
 
             function _class(props) {
                 _classCallCheck(this, _class);
@@ -44,7 +44,7 @@ exports.default = function (composer, decomposer, properties, onEnter, mapData) 
             }]);
 
             return _class;
-        }(_react2.default.PureComponent);
+        }(_react.Component);
     };
 };
 
