@@ -97,4 +97,12 @@ class Spec extends Component {
     }
 }
 
+Spec.defaultProps = {
+  replaceObject: {
+    l: 'b',
+    n: 30
+  },
+  replacedArray: []
+};
+
 export default Spec;
