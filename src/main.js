@@ -369,10 +369,20 @@ export default function main() {
         }
     };
 
+    var mergePendingChanges = function() {
+        var changeMap = {};
+        for (var i = 0; i < pendingChanges.length; i++) {
+            var change = pendingChanges[i];
+            changeMap[JSON.stringify(change.obj)+change.prop] = change;
+        }
+        pendingChanges = Object.values(changeMap);
+    };
+
     var applyPendingChanges = function () {
         // apply pending changes
         var change = null;
         pendingTimerID = null;
+        mergePendingChanges();
         for (var i = 0; i < pendingChanges.length; i++) {
             change = pendingChanges[i];
             callWatchers(change.obj, change.prop, change.mode, change.newval, change.oldval);
