@@ -1,6 +1,6 @@
 {
   "name": "hytex",
-  "version": "1.0.36",
+  "version": "1.0.37",
   "description": "Hytex is a state container for JS applications. It watches changing objects and trigger re-rendering of views using framework like react. It is a lightweight alternative for Redux, Mobx or Flux.",
   "main": "build/index.js",
   "scripts": {
@@ -28,8 +28,8 @@
   "dependencies": {
     "acorn": "^5.5.3",
     "prop-types": "^15.5.10",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.2.1",
